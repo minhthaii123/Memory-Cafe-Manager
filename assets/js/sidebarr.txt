@@ -1,0 +1,36 @@
+document.addEventListener('DOMContentLoaded', function () {
+    // Lắng nghe tất cả các thẻ <a> trong sidebar
+    const links = document.querySelectorAll('.sidebar a');
+
+    links.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault(); // Ngăn hành vi mặc định
+
+            const url = this.getAttribute('href'); // Lấy URL đích
+            loadContent(url); // Tải nội dung bằng AJAX
+
+            // Optional: cập nhật highlight active link
+            links.forEach(l => l.classList.remove('active'));
+            this.classList.add('active');
+        });
+    });
+
+    function loadContent(url) {
+        fetch(url)
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.text();
+            })
+            .then(data => {
+                document.querySelector('.content').innerHTML = data;
+            })
+            .catch(error => {
+                console.error('Có lỗi xảy ra:', error);
+                document.querySelector('.content').innerHTML = `<p class="error">Không thể tải nội dung: ${url}</p>`;
+            });
+    }
+
+    // Tùy chọn: tự động tải một trang mặc định khi vào trang
+    const defaultPage = 'modules/statistics/revenue_by_hours_of_day.php';
+    loadContent(defaultPage);
+});

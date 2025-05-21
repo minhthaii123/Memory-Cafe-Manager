@@ -1,0 +1,125 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f4f4f9;
+  color: #333;
+  line-height: 1.6;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 200px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  height: 100vh;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar img {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  margin-bottom: 20px;
+}
+
+.sidebar button {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #000;
+  background-color: #fff;
+  cursor: pointer;
+  text-align: left;
+  color: black;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sidebar:hover {
+  color: white;
+}
+
+.sidebar button:hover {
+  background-color: #f70b0b;
+  color: black;
+}
+
+/* Content Area */
+.content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+/* Dropdown Menu */
+#dropdown-container {
+  position: relative;
+}
+
+#dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f4f4f4;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+}
+
+#dropdown-menu a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    z-index: 1000;
+}
+
+#dropdown-menu a:hover {
+  background-color: #f70b0b;
+  color: black;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  margin: 0;
+}
+
+.header button a{
+  padding: 10px;
+  border: 1px solid #000;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.header button:hover {
+  background-color: #ddd;
+}
+#dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 999;
+}
+
+#dropdown-container {
+  position: relative;
+}

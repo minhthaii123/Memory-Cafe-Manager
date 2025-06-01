@@ -3,3 +3,33 @@ password gmail: minhthai2003 ( cxpi kepb hbso yply )
 thư viện gửi mail và xuất file excel
 	composer require phpoffice/phpspreadsheet phpmailer/phpmailer
 composer require phpoffice/phpspreadsheet
+
+----------------PUSH GIT----------------
+--------bước 1--------
+git push
+
+git init
+git add .
+
+git commit -m "fizxx"
+
+git remote add origin https://github.com/minhthaii123/thaithaithai.git
+
+git push -u origin master
+
+
+--------bước 2--------
+ git pull origin master --allow-unrelated-histories
+ thoát git
+ tạo lại
+git init
+git add .
+git commit -m "fizxx"
+git push origin master
+
+
+--------------------------- push lần 2--------
+git init
+git add -A
+git commit -m "Cập nhật mới"
+git push --set-upstream origin master

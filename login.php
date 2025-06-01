@@ -33,11 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body>
     
-    <?php if (isset($_GET['error'])): ?>
-        <p style='color:red;'><?= htmlspecialchars($_GET['error']) ?></p>
-    <?php endif; ?>
+    
     <form action="login.php" method="post">
         <h2>Đăng nhập</h2>
+        <?php if (isset($_GET['error'])): ?>
+             <p style='color:red;'><?= htmlspecialchars($_GET['error']) ?></p>
+        <?php endif; ?>
         <input type="text" name="username" placeholder="Tên đăng nhập" required><br><br>
         <input type="password" name="password" placeholder="Mật khẩu" required><br><br>
         <button type="submit">Đăng nhập</button>

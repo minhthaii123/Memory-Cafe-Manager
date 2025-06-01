@@ -30,6 +30,8 @@ if (session_status() == PHP_SESSION_NONE) {
         <div id="main-content">
             <?php 
                 if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') {
+                    include("./modules/statistics/excel_month.php"); 
+                     include("./modules/statistics/excel_employee.php"); 
                     include("./modules/statistics/revenue_by_hours_of_day.php");
                 } else {
                     include("./includes/pruducts.php");
@@ -43,6 +45,7 @@ if (session_status() == PHP_SESSION_NONE) {
         <p class="fas fa-sign-out-alt"></p> Đăng xuất
     </a>
 
+
     <!-- Script load content qua AJAX -->
     <script>
         function loadContent(url) {
@@ -54,9 +57,8 @@ if (session_status() == PHP_SESSION_NONE) {
                 }
             };
             xhr.send();
+            
         }
     </script>
-
-    
 </body>
 </html>

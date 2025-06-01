@@ -17,7 +17,7 @@ if ($user['role'] !== 'admin') {
     die("Bạn không có quyền truy cập trang này");
 }
 
-// Lấy doanh thu theo nhân viên
+// Lấy doanh thu theo nhân viên (cho hiển thị trên web)
 $stmt = $conn->prepare("
     SELECT 
         u.id as user_id,
@@ -52,8 +52,6 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <h1>Báo Cáo Doanh Thu Theo Nhân Viên</h1>
     
-    <button class="export-btn" onclick="exportToExcel()">Xuất Excel</button>
-    
     <table id="revenueTable">
         <thead>
             <tr>
@@ -74,54 +72,16 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <td><span class="badge"><?= $employee['order_count'] ?></span></td>
                     <td class="highlight"><?= number_format($employee['total_revenue'], 0, ',', '.') ?> ₫</td>
                     <td><?= date('d/m/Y H:i', strtotime($employee['last_order_date'])) ?></td>
-                    
                 </tr>
             <?php endforeach; ?>
             
             <?php if (empty($employees)): ?>
                 <tr>
-                    <td colspan="7" style="text-align: center;">Không có dữ liệu doanh thu</td>
+                    <td colspan="6" style="text-align: center;">Không có dữ liệu doanh thu</td>
                 </tr>
             <?php endif; ?>
         </tbody>
     </table>
-
-    <script>
-        function exportToExcel() {
-            // Tạo một bảng HTML tạm thời
-            let html = '<table>';
-            
-            // Thêm tiêu đề
-            html += '<tr>';
-            html += '<th>STT</th>';
-            html += '<th>Nhân viên</th>';
-            html += '<th>Tài khoản</th>';
-            html += '<th>Số đơn hàng</th>';
-            html += '<th>Tổng doanh thu</th>';
-            html += '<th>Đơn hàng gần nhất</th>';
-            html += '</tr>';
-            
-            // Thêm dữ liệu
-            <?php foreach ($employees as $index => $employee): ?>
-                html += '<tr>';
-                html += '<td><?= $index + 1 ?></td>';
-                html += '<td><?= htmlspecialchars($employee['fullname']) ?></td>';
-                html += '<td><?= htmlspecialchars($employee['username']) ?></td>';
-                html += '<td><?= $employee['order_count'] ?></td>';
-                html += '<td><?= number_format($employee['total_revenue'], 0, ',', '.') ?> ₫</td>';
-                html += '<td><?= date('d/m/Y H:i', strtotime($employee['last_order_date'])) ?></td>';
-                html += '</tr>';
-            <?php endforeach; ?>
-            
-            html += '</table>';
-            
-            // Tạo blob và tải về
-            let blob = new Blob([html], {type: 'application/vnd.ms-excel'});
-            let link = document.createElement('a');
-            link.href = URL.createObjectURL(blob);
-            link.download = 'doanh_thu_nhan_vien.xls';
-            link.click();
-        }
-    </script>
+    
 </body>
 </html>

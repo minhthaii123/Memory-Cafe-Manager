@@ -43,78 +43,8 @@ $totalRevenue = array_sum(array_column($revenueData, 'total_revenue'));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/staticyear.css">
     <title>Báo cáo doanh thu theo năm</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .summary {
-            background-color: #f8f9fa;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            font-size: 1.2em;
-        }
-        .year-section {
-            margin-bottom: 30px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 15px;
-        }
-        .year-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #343a40;
-            color: white;
-        }
-        .highlight {
-            font-weight: bold;
-            background-color: #e7f5ff;
-        }
-        .text-right {
-            text-align: right;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .view-btn {
-            padding: 3px 8px;
-            background-color: #17a2b8;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-size: 0.9em;
-        }
-        .expand-btn {
-            padding: 3px 8px;
-            background-color: #6c757d;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-    </style>
 </head>
 <body>
     <h1>Báo cáo doanh thu theo năm</h1>
@@ -155,7 +85,7 @@ $totalRevenue = array_sum(array_column($revenueData, 'total_revenue'));
                             <td class="text-right highlight"><?= number_format($monthData['total_revenue'], 0, ',', '.') ?> ₫</td>
                             <td class="text-right"><?= number_format($monthData['avg_order_value'], 0, ',', '.') ?> ₫</td>
                             <td class="text-center">
-                                <a href="/modules/statistics/admin_order_by_month.php?month=<?= $yearData['year'] ?>-<?= str_pad($monthData['month'], 2, '0', STR_PAD_LEFT) ?>" class="view-btn">Xem đơn hàng</a>
+                                <a href="/modules/statistics/admin_order_by_month.php?month=<?= $yearData['year'] ?>-<?= str_pad($monthData['month'], 2, '0', STR_PAD_LEFT) ?>" style="background-color:rgb(23, 54, 193);  background-color:rgb(6, 106, 220);">Xem đơn hàng</a>
                             </td>
                         </tr>
                     <?php endforeach; ?>

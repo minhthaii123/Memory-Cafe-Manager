@@ -1,63 +1,65 @@
-/* styles.css */
-
-/* Đặt font và căn giữa toàn bộ form */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #f5f5f5;
     padding: 20px;
+    font-family: sans-serif;
 }
 
-/* Tiêu đề */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
 h2 {
     text-align: center;
-    color: #333;
+    margin-bottom: 20px;
+    font-size: 22px;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 6px;
+}
+.btn-delete {
+  background-color: #e74c3c; /* màu đỏ */
+  color: white;
+  padding: 6px 12px;
+  text-decoration: none;
+  border-radius: 4px;
+  display: inline-block;
 }
 
-/* Form chính */
-form {
-    max-width: 500px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 30px 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+.btn-delete:hover {
+  background-color: #c0392b; /* đỏ đậm hơn khi hover */
 }
 
-/* Nhãn label */
+.form-group {
+    margin-bottom: 12px;
+}
+
 label {
     display: block;
     margin-bottom: 6px;
-    font-weight: bold;
-    color: #555;
+    font-weight: 600;
 }
 
-/* Ô input */
 input[type="text"],
-input[type="email"],
 input[type="number"],
-input[type="password"] {
+textarea {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    box-sizing: border-box;
+    padding: 8px;
     font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
-/* Nút submit */
 input[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    background-color: #4CAF50;
+    background-color: #3498db;
     color: white;
+    padding: 10px 16px;
     border: none;
-    border-radius: 6px;
-    font-size: 16px;
+    font-size: 15px;
+    border-radius: 4px;
+    width: 100%;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-input[type="submit"]:hover {
-    background-color: #45a049;
 }

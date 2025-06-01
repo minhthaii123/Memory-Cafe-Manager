@@ -46,58 +46,8 @@ $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/revenue_by_employee.css">
     <title>Doanh Thu Theo Nhân Viên</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .highlight {
-            font-weight: bold;
-            color: #e67e22;
-        }
-        .badge {
-            background-color: #3498db;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-        .export-btn {
-            margin: 20px 0;
-            padding: 10px 15px;
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-        .export-btn:hover {
-            background-color: #2ecc71;
-        }
-    </style>
 </head>
 <body>
     <h1>Báo Cáo Doanh Thu Theo Nhân Viên</h1>

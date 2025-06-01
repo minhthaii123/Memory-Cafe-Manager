@@ -25,51 +25,8 @@ $totalRevenue = array_sum(array_column($revenueData, 'total_revenue'));
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/staticday.css">
     <title>Báo cáo doanh thu theo ngày</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-        .summary {
-            background-color: #f8f9fa;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            font-size: 1.2em;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #343a40;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .highlight {
-            font-weight: bold;
-            background-color: #e7f5ff;
-        }
-        .text-right {
-            text-align: right;
-        }
-        .text-center {
-            text-align: center;
-        }
-    </style>
 </head>
 <body>
     <h1>Báo cáo doanh thu theo ngày</h1>
@@ -98,7 +55,7 @@ $totalRevenue = array_sum(array_column($revenueData, 'total_revenue'));
                     <td class="text-right highlight"><?= number_format($row['total_revenue'], 0, ',', '.') ?> ₫</td>
                     <td class="text-right"><?= number_format($row['avg_order_value'], 0, ',', '.') ?> ₫</td>
                     <td class="text-center">
-                        <a href="/modules/statistics/admin_order_list_by_date.php?date=<?= $row['order_date'] ?>">Xem đơn hàng</a>
+                        <a href="/modules/statistics/admin_order_list_by_date.php?date=<?= $row['order_date'] ?>" class="view-btn">Xem đơn hàng</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

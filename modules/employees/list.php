@@ -16,7 +16,30 @@ if ($keyword) {
 
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
+<style>
+    .btn-delete {
+    background-color: #e74c3c; /* màu đỏ */
+    color: white;
+    padding: 6px 12px;
+    text-decoration: none;
+    border-radius: 4px;
+    display: inline-block;
+    }
+    .btn-delete:hover {
+    background-color: #c0392b; /* đỏ đậm hơn khi hover */
+    }
+    .btn-xem {
+        background-color:rgb(40, 215, 13); /* màu đỏ */
+        color: white;
+        padding: 6px 12px;
+        text-decoration: none;
+        border-radius: 4px;
+        display: inline-block;
+        }
+        .btn-delete:hover {
+        background-color:rgb(14, 210, 73); /* đỏ đậm hơn khi hover */
+        }
+</style>
 <h2>Danh sách nhân viên</h2>
 
 <form method="GET" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
@@ -24,7 +47,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <button type="submit">Tìm kiếm</button>
 </form>
 
-<a href="/modules/employees/add.php">Thêm Nhân Viên</a>
+<button onclick="loadContent('/modules/employees/add.php')">thêm nhân viên mới</button>
 
 <table border="1" cellspacing="0" cellpadding="10">
     <tr>
@@ -43,8 +66,8 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo number_format($row['salary'], 0, ',', '.'); ?> VND</td>
             <td><?php echo htmlspecialchars($row['created_at']); ?></td>
             <td>
-                <a href="/modules/employees/edit.php?id=<?php echo $row['id']; ?>">Sửa</a>
-                <a href="/modules/employees/delete.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này không?');">Xóa</a>
+                <a href="/modules/employees/edit.php?id=<?php echo $row['id']; ?>" class="btn-xem">Sửa</a>
+                <a href="/modules/employees/delete.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa nhân viên này không?');" class="btn-delete">Xóa</a>
             </td>
         </tr>
     <?php } ?>

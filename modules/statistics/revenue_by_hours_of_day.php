@@ -50,79 +50,8 @@ for ($i = 0; $i < 24; $i++) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Doanh thu theo giờ ngày <?= $selectedDate ?></title>
+    <link rel="stylesheet" href="/assets/css/revenue_by_hours_of_day.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        .date-navigator {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 10px;
-            background-color: #f8f9fa;
-            border-radius: 5px;
-        }
-        .date-navigator a {
-            padding: 5px 10px;
-            background-color: #6c757d;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-        }
-        .date-navigator h2 {
-            margin: 0;
-        }
-        .summary {
-            background-color: #e9ecef;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            font-size: 1.1em;
-        }
-        .chart-container {
-            margin: 30px 0;
-            height: 400px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #343a40;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-        .highlight {
-            font-weight: bold;
-        }
-        .text-right {
-            text-align: right;
-        }
-        .text-center {
-            text-align: center;
-        }
-        .peak-hour {
-            background-color: #ffcccc;
-        }
-        .normal-hour {
-            background-color: #ffffff;
-        }
-        .no-data {
-            color: #999;
-            font-style: italic;
-        }
-    </style>
 </head>
 <body>
     <div class="date-navigator">

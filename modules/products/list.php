@@ -20,7 +20,19 @@ $stmt->execute($params);
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
-
+<style>
+.btn-delete {
+  background-color: #e74c3c; /* màu đỏ */
+  color: white;
+  padding: 6px 12px;
+  text-decoration: none;
+  border-radius: 4px;
+  display: inline-block;
+}
+.btn-delete:hover {
+  background-color: #c0392b; /* đỏ đậm hơn khi hover */
+}
+</style>
 <h2>Danh sách sản phẩm</h2>
 
 <!-- Form tìm kiếm trên cùng file -->
@@ -31,10 +43,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
 <!-- Nút thêm sản phẩm -->
-<button>
-    <a href="/modules/products/add.php" style="text-decoration: none; color: inherit;">Thêm sản phẩm mới</a>
-</button><br><br>
-
+    <button onclick="loadContent('/modules/products/add.php')">hêm sản phẩm mới</button>
 <!-- Bảng danh sách -->
 <table border="1" cellspacing="0" cellpadding="10">
     <tr>
@@ -58,8 +67,13 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <td><img src="/<?= $product['image']; ?>" width="100" alt="Ảnh sản phẩm"></td>
                 <td><?= $product['created_at']; ?></td>
                 <td>
-                    <a href="/modules/products/edit.php?id=<?= $product['id']; ?>">Sửa</a> |
-                    <a href="/modules/products/delete.php?id=<?= $product['id']; ?>" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')">Xóa</a>
+                    <button onclick="loadContent('/modules/products/edit.php?id=<?= $product['id']; ?>')">Sửa</button>
+                    <a href="/modules/products/delete.php?id=<?= $product['id']; ?>" 
+                            onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')" 
+                            class="btn-delete">
+                            Xóa
+                    </a>
+
                 </td>
             </tr>
         <?php endforeach; ?>

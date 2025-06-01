@@ -58,22 +58,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <h2>Sửa sản phẩm</h2>
 <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
 <form method="post" enctype="multipart/form-data">
-    <label>Tên sản phẩm:</label><br>
-    <input type="text" name="product_name" value="<?php echo $product['product_name']; ?>" required><br><br>
+    <label>Tên sản phẩm:</label>
+    <input type="text" name="product_name" value="<?php echo $product['product_name']; ?>" required>
 
-    <label>Giá (VND):</label><br>
-    <input type="number" name="price" value="<?php echo $product['price']; ?>" required><br><br>
+    <label>Giá (VND):</label>
+    <input type="number" name="price" value="<?php echo $product['price']; ?>" required>
 
-    <label>Số lượng:</label><br>
-    <input type="number" name="quantity" value="<?php echo $product['quantity']; ?>" required><br><br>
+    <label>Số lượng:</label>>
+    <input type="number" name="quantity" value="<?php echo $product['quantity']; ?>" required>
 
-    <label>Mô tả:</label><br>
-    <textarea name="description" rows="4"><?php echo $product['description']; ?></textarea><br><br>
+    <label>Mô tả:</label>
+    <textarea name="description" rows="4"><?php echo $product['description']; ?></textarea>
 
-    <label>Ảnh sản phẩm:</label><br>
-    <input type="file" name="image"><br><br>
+    <label>Ảnh sản phẩm:</label>
+    <input type="file" name="image">
 
-    <img src="/<?php echo $product['image']; ?>" width="100" alt="Ảnh hiện tại"><br><br>
+    <img src="/<?php echo $product['image']; ?>" width="100" alt="Ảnh hiện tại">
 
     <input type="submit" value="Cập nhật">
 </form>

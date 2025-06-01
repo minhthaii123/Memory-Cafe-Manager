@@ -1,0 +1,155 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  background-color: #007BFF;
+  color: white;
+  border-radius: 6px;
+  padding: 12px 20px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 123, 255, 0.4);
+}
+
+button:hover {
+  background-color: #0056b3;
+  box-shadow: 0 4px 10px rgba(0, 86, 179, 0.6);
+}
+
+.container {
+  padding: 25px 30px;
+  margin: 30px auto;
+  max-width: 900px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.order-item {
+  border: 1px solid #ddd;
+  padding: 20px 25px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background: #fafafa;
+  box-shadow: inset 0 0 6px #f0f0f0;
+}
+
+.order-item h3 {
+  margin-top: 0;
+  font-size: 1.25rem;
+  color: #222;
+  margin-bottom: 15px;
+}
+
+.order-item label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 600;
+  color: #444;
+  font-size: 0.95rem;
+}
+
+.order-item input[type="text"],
+.order-item input[type="number"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 6px;
+  border-radius: 6px;
+  border: 1.5px solid #ccc;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.order-item input[type="text"]:focus,
+.order-item input[type="number"]:focus {
+  outline: none;
+  border-color: #007BFF;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.preview-image {
+  max-width: 150px;
+  margin-top: 12px;
+  border-radius: 8px;
+  display: block;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+
+#totalPrice {
+  font-weight: 700;
+  font-size: 1.3em;
+  margin-top: 30px;
+  color: #222;
+  text-align: right;
+}
+
+#totalOrdersCount {
+  font-weight: 700;
+  font-size: 1.1em;
+  margin-bottom: 15px;
+  color: #555;
+}
+
+/* Modal styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  padding-top: 120px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.45);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: auto;
+  padding: 25px 30px;
+  border-radius: 12px;
+  max-width: 320px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  position: relative;
+  font-size: 1rem;
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 26px;
+  font-weight: bold;
+  color: #666;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.close:hover {
+  color: #000;
+}
+
+#orderCount {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 15px 0 25px 0;
+  font-size: 1.1rem;
+  border-radius: 6px;
+  border: 1.5px solid #ccc;
+  box-sizing: border-box;
+}
+
+#orderCount:focus {
+  outline: none;
+  border-color: #007BFF;
+  box-shadow: 0 0 6px rgba(0,123,255,0.4);
+}
+

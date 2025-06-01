@@ -43,20 +43,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <h2>Thêm sản phẩm mới</h2>
 <link rel="stylesheet" type="text/css" href="/assets/css/styles.css">
 <form action="/modules/products/add.php" method="post" enctype="multipart/form-data">
-    <label>Tên sản phẩm:</label><br>
-    <input type="text" name="product_name" required><br><br>
+    <label>Tên sản phẩm:</label>
+    <input type="text" name="product_name" required>
 
-    <label>Giá (VND):</label><br>
-    <input type="number" name="price" required><br><br>
+    <label>Giá (VND):</label>
+    <input type="number" name="price" required>
 
-    <label>Số lượng:</label><br>
-    <input type="number" name="quantity" required><br><br>
+    <label>Số lượng:</label>
+    <input type="number" name="quantity" required>
 
-    <label>Mô tả:</label><br>
-    <textarea name="description" rows="4" required></textarea><br><br>
+    <label>Mô tả:</label>
+    <textarea name="description" rows="4" required></textarea>
 
-    <label>Chọn ảnh sản phẩm:</label><br>
-    <input type="file" name="image" accept="image/*" required><br><br>
+    <label>Chọn ảnh sản phẩm:</label>
+    <input type="file" name="image" accept="image/*" required>
 
     <input type="submit" value="Thêm sản phẩm">
 </form>

@@ -61,6 +61,31 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
         .status-Đang_xử_lý { color: #3498db; }
         .status-Hoàn_thành { color: #27ae60; }
         .status-Hủy { color: #e74c3c; }
+
+        .btn-delete {
+        background-color: #e74c3c; /* màu đỏ */
+        color: white;
+        padding: 6px 12px;
+        text-decoration: none;
+        border-radius: 4px;
+        display: inline-block;
+        }
+        .btn-delete:hover {
+        background-color: #c0392b; /* đỏ đậm hơn khi hover */
+        }
+
+        .btn-xem {
+        background-color:rgb(40, 215, 13); /* màu đỏ */
+        color: white;
+        padding: 6px 12px;
+        text-decoration: none;
+        border-radius: 4px;
+        display: inline-block;
+        }
+        .btn-delete:hover {
+        background-color:rgb(14, 210, 73); /* đỏ đậm hơn khi hover */
+        }
+
     </style>
 </head>
 <body>
@@ -95,9 +120,9 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </td>
                     <td><?= date('d/m/Y H:i', strtotime($order['created_at'])) ?></td>
                     <td>
-                        <a href="/modules/orders/order_detail.php?id=<?= $order['id'] ?>">Xem chi tiết</a> - 
+                        <a href="/modules/orders/order_detail.php?id=<?= $order['id'] ?>"class="btn-xem">Xem chi tiết</a> - 
                         <a href="/modules/orders/delete.php?id=<?= $order['id'] ?>" 
-                            onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này không?');">
+                            onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này không?');" class="btn-delete">
                              Xóa
                         </a>
 

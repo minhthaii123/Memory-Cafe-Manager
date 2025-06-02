@@ -51,4 +51,4 @@ $details = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <?php endforeach; ?>
 </table>
 
-<a href="/trangadmin.php">← Quay lại danh Chinhs</a>
+

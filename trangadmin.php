@@ -22,7 +22,7 @@ if (session_status() == PHP_SESSION_NONE) {
             <h1>Memory Cafe Manager</h1> 
             <p>
                 <strong style="color: red;">
-                    Xin chào, <?= htmlspecialchars($_SESSION['user']['username'] ?? '') ?>
+                    Xin chào, <?= htmlspecialchars($_SESSION['user']['fullname'] ?? '') ?>
                 </strong>
             </p>
         </div>

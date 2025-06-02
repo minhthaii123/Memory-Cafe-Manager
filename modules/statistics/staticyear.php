@@ -85,7 +85,7 @@ $totalRevenue = array_sum(array_column($revenueData, 'total_revenue'));
                             <td class="text-right highlight"><?= number_format($monthData['total_revenue'], 0, ',', '.') ?> ₫</td>
                             <td class="text-right"><?= number_format($monthData['avg_order_value'], 0, ',', '.') ?> ₫</td>
                             <td class="text-center">
-                                <a href="/modules/statistics/admin_order_by_month.php?month=<?= $yearData['year'] ?>-<?= str_pad($monthData['month'], 2, '0', STR_PAD_LEFT) ?>" style="background-color:rgb(23, 54, 193);  background-color:rgb(6, 106, 220);">Xem đơn hàng</a>
+                                <button onclick="loadContent('/modules/statistics/admin_order_by_month.php?month=<?= $yearData['year'] ?>-<?= str_pad($monthData['month'], 2, '0', STR_PAD_LEFT) ?>')"class="btn-btn">Xem chi tiết đơn hàng</button>
                             </td>
                         </tr>
                     <?php endforeach; ?>

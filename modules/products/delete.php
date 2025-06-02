@@ -9,6 +9,12 @@ include __DIR__ . '/../../config/config.php';
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
+    // Xóa các chi tiết đơn hàng liên quan đến sản phẩm này
+    $sql = "DELETE FROM order_details WHERE product_id = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $id);
+    $stmt->execute();
+
     // Xóa ảnh khỏi thư mục uploads
     $sql = "SELECT image FROM products WHERE id = :id";
     $stmt = $conn->prepare($sql);
@@ -26,11 +32,9 @@ if (isset($_GET['id'])) {
     $stmt->bindParam(':id', $id);
 
     if ($stmt->execute()) {
-        echo "Xóa sản phẩm thành công!";
         header("Location: /trangadmin.php");
         exit;
     } else {
         echo "Có lỗi xảy ra!";
     }
 }
-?>

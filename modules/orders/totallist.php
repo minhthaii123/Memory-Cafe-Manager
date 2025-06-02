@@ -120,7 +120,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </td>
                     <td><?= date('d/m/Y H:i', strtotime($order['created_at'])) ?></td>
                     <td>
-                        <a href="/modules/orders/order_detail.php?id=<?= $order['id'] ?>"class="btn-xem">Xem chi tiết</a> - 
+                        <button onclick="loadContent('/modules/orders/order_detail.php?id=<?= $order['id'] ?>')"class="btn-xem">Xem chi tiết</button>
                         <a href="/modules/orders/delete.php?id=<?= $order['id'] ?>" 
                             onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này không?');" class="btn-delete">
                              Xóa

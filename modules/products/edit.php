@@ -18,41 +18,52 @@ if (isset($_GET['id'])) {
     }
 }
 
-// Xử lý cập nhật sản phẩm
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Lấy lại dữ liệu sản phẩm hiện tại để phòng trường hợp lỗi
+    $id = $_GET['id'] ?? null;
+    $stmt = $conn->prepare("SELECT * FROM products WHERE id = :id");
+    $stmt->execute(['id' => $id]);
+    $product = $stmt->fetch(PDO::FETCH_ASSOC);
+    if (!$product) {
+        echo "Sản phẩm không tồn tại!";
+        exit;
+    }
+
     $product_name = $_POST['product_name'];
     $price = $_POST['price'];
     $quantity = $_POST['quantity'];
     $description = $_POST['description'];
 
-    // Kiểm tra có upload ảnh mới không
-    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
-        $image = 'assets/images/' . basename($_FILES['image']['name']);
-        move_uploaded_file($_FILES['image']['tmp_name'], $image);
-    } else {
-        $image = $product['image'];
+    $image = $product['image']; // Mặc định giữ ảnh cũ
+    if (!empty($_FILES['image']['name']) && $_FILES['image']['error'] == 0) {
+        $imagePath = 'assets/images/' . basename($_FILES['image']['name']);
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $imagePath)) {
+            $image = $imagePath;
+        }
     }
 
     $sql = "UPDATE products 
-            SET product_name = :product_name, price = :price, quantity = :quantity, 
+            SET product_name = :product_name, price = :price, quantity = :quantity,
                 description = :description, image = :image 
             WHERE id = :id";
     $stmt = $conn->prepare($sql);
-    $stmt->bindParam(':product_name', $product_name);
-    $stmt->bindParam(':price', $price);
-    $stmt->bindParam(':quantity', $quantity);
-    $stmt->bindParam(':description', $description);
-    $stmt->bindParam(':image', $image);
-    $stmt->bindParam(':id', $id);
+    $success = $stmt->execute([
+        'product_name' => $product_name,
+        'price' => $price,
+        'quantity' => $quantity,
+        'description' => $description,
+        'image' => $image,
+        'id' => $id
+    ]);
 
-    if ($stmt->execute()) {
-        echo "Cập nhật sản phẩm thành công!";
+    if ($success) {
         header("Location: /trangadmin.php");
         exit;
     } else {
-        echo "Có lỗi xảy ra!";
+        echo "Cập nhật thất bại!";
     }
 }
+
 ?>
 
 <h2>Sửa sản phẩm</h2>
@@ -64,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <label>Giá (VND):</label>
     <input type="number" name="price" value="<?php echo $product['price']; ?>" required>
 
-    <label>Số lượng:</label>>
+    <label>Số lượng:</label>
     <input type="number" name="quantity" value="<?php echo $product['quantity']; ?>" required>
 
     <label>Mô tả:</label>

@@ -55,7 +55,7 @@ $totalRevenue = array_sum(array_column($revenueData, 'total_revenue'));
                     <td class="text-right highlight"><?= number_format($row['total_revenue'], 0, ',', '.') ?> ₫</td>
                     <td class="text-right"><?= number_format($row['avg_order_value'], 0, ',', '.') ?> ₫</td>
                     <td class="text-center">
-                        <a href="/modules/statistics/admin_order_list_by_date.php?date=<?= $row['order_date'] ?>" class="view-btn">Xem đơn hàng</a>
+                        <button onclick="loadContent('/modules/statistics/admin_order_list_by_date.php?date=<?= $row['order_date'] ?>')"class="btn-btn">Xem chi tiết đơn hàng</button>
                     </td>
                 </tr>
             <?php endforeach; ?>

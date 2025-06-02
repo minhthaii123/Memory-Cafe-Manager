@@ -38,26 +38,22 @@ $productMapJson = json_encode($productMap);
 </head>
 <body>
     <div class="container">
-    <button type="button" id="openModalBtn">+ Tạo đơn hàng mới</button>
-
-        <!-- Modal -->
-        <div id="orderModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="closeModalBtn">&times;</span>
-            <h3>Nhập số lượng đơn hàng</h3>
-            <input type="number" id="orderCount" name="orderCount" min="1" value="1">
-            <button type="button" id="generateBtn">Tạo đơn hàng</button>
-        </div>
-        </div>
-        <div class="container" id="ordersContainer">
-                <div class="order-row" id="orderContainer"></div>
-            </div>
-
-            <div class="container total-price" id="totalPrice">Tổng giá tiền: 0</div>
-            <button type="button" id="submitOrderBtn">Xác nhận tạo đơn hàng</button>
+    <body>
+    <div class="manual-create">
+        <h3>Nhập số lượng đơn hàng</h3>
+        <input type="number" id="orderCount" name="orderCount" min="1" value="1">
+        <button type="button" id="generateBtn">Tạo đơn hàng</button>
     </div>
 
-   
+    <div class="container">
+        <div class="container" id="ordersContainer">
+            <div class="order-row" id="orderContainer"></div>
+        </div>
+
+        <div class="container total-price" id="totalPrice">Tổng giá tiền: 0</div>
+        <button type="button" id="submitOrderBtn">Xác nhận tạo đơn hàng</button>
+    </div>
+</body>
 
     <script>
         // Truyền dữ liệu sản phẩm từ PHP sang JavaScript
@@ -111,7 +107,8 @@ $productMapJson = json_encode($productMap);
                 unitPriceInput.value = '0';
             }
         }
-
+	
+	//Tính Toán và Hiển Thị Giá Tiền
         function calculatePrice(orderIndex) {
             const quantity = parseFloat(document.getElementById(`quantity${orderIndex}`).value) || 0;
             const unitPrice = parseFloat(document.getElementById(`unitPrice${orderIndex}`).value) || 0;
@@ -178,20 +175,7 @@ $productMapJson = json_encode($productMap);
             });
         });
 
-        document.getElementById("openModalBtn").addEventListener("click", function () {
-            document.getElementById("orderModal").style.display = "block";
-        });
-
-    document.getElementById("closeModalBtn").addEventListener("click", function () {
-        document.getElementById("orderModal").style.display = "none";
-        });
-
-        window.addEventListener("click", function (event) {
-            const modal = document.getElementById("orderModal");
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-    });
+       
 
 let currentOrderCount = 0; // Biến lưu số đơn hàng hiện tại
 
@@ -246,6 +230,9 @@ function generateOrders() {
     });
 
     calculateTotalPrice();
+
+    // Ẩn phần nhập số lượng sau khi tạo đơn hàng
+    document.querySelector('.manual-create').style.display = 'none';
 }
 
 function onPriceInput() {

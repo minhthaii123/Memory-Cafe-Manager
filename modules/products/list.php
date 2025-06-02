@@ -8,15 +8,9 @@ include __DIR__ . '/../../config/config.php';
 
 // Xử lý tìm kiếm nếu có từ khóa
 $sql = "SELECT * FROM products";
-$params = [];
-
-if (isset($_GET['search']) && !empty($_GET['search'])) {
-    $sql .= " WHERE product_name LIKE :search";
-    $params[':search'] = '%' . $_GET['search'] . '%';
-}
 
 $stmt = $conn->prepare($sql);
-$stmt->execute($params);
+$stmt->execute();
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
@@ -34,13 +28,6 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 </style>
 <h2>Danh sách sản phẩm</h2>
-
-<!-- Form tìm kiếm trên cùng file -->
-<form method="GET" action="/modules/products/list.php">
-    <input type="text" name="search" placeholder="Tìm sản phẩm">
-    <button type="submit">Tìm</button>
-</form>
-
 
 <!-- Nút thêm sản phẩm -->
     <button onclick="loadContent('/modules/products/add.php')">hêm sản phẩm mới</button>
@@ -67,7 +54,7 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <td><img src="/<?= $product['image']; ?>" width="100" alt="Ảnh sản phẩm"></td>
                 <td><?= $product['created_at']; ?></td>
                 <td>
-                    <button onclick="loadContent('/modules/products/edit.php?id=<?= $product['id']; ?>')">Sửa</button>
+                     <a href="/modules/products/edit.php?id=<?= $product['id']; ?>" class="btn-delete"> Sửa</a> 
                     <a href="/modules/products/delete.php?id=<?= $product['id']; ?>" 
                             onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?')" 
                             class="btn-delete">
@@ -78,6 +65,5 @@ $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </tr>
         <?php endforeach; ?>
     <?php else: ?>
-        <tr><td colspan="8">Không tìm thấy sản phẩm nào.</td></tr>
     <?php endif; ?>
 </table>

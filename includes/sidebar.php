@@ -28,6 +28,7 @@ $role = $user['role'] ?? 'employee'; // Mặc định là employee nếu không 
 <?php if ($role === 'admin'): ?>
     <button onclick="loadContent('/modules/products/list.php')">Quản lý sản phẩm</button>
     <button onclick="loadContent('/modules/orders/totallist.php')">Quản lý đơn hàng</button>
+    <button onclick="loadContent('/modules/orders/order_huy.php')">Các đơn hàng bị hủy</button>
     <button onclick="loadContent('/modules/employees/list.php')">Quản lý nhân viên</button>
     <button onclick="loadContent('/modules/statistics/staticday.php')">Doanh thu hàng ngày</button>
     <button onclick="loadContent('/modules/statistics/staticmonth.php')">Doanh thu hàng tháng</button>

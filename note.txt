@@ -28,7 +28,7 @@ git commit -m "fizxx"
 git push origin master
 
 
---------------------------- push lần 2--------
+--------------------------- push cập nhật mới--------
 git init
 git add -A
 git commit -m "Cập nhật mới"

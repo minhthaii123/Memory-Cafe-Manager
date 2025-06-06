@@ -2,7 +2,7 @@
 session_start();
 include __DIR__ . '/../../config/config.php';
 
-// Truy vấn doanh thu theo ngày
+// Truy vấn doanh thu theo ngày (chỉ với đơn hàng đã hoàn thành)
 $stmt = $conn->prepare("
     SELECT 
         DATE(o.created_at) as order_date,
@@ -10,6 +10,7 @@ $stmt = $conn->prepare("
         SUM(o.total_price) as total_revenue,
         AVG(o.total_price) as avg_order_value
     FROM orders o
+    WHERE o.status = 'Hoàn thành'
     GROUP BY DATE(o.created_at)
     ORDER BY order_date DESC
 ");
@@ -26,15 +27,15 @@ $totalRevenue = array_sum(array_column($revenueData, 'total_revenue'));
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/staticday.css">
-    <title>Báo cáo doanh thu theo ngày</title>
+    <title>Báo cáo doanh thu theo ngày (Đơn hàng hoàn thành)</title>
 </head>
 <body>
-    <h1>Báo cáo doanh thu theo ngày</h1>
+    <h1>Báo cáo doanh thu theo ngày (Đơn hàng hoàn thành)</h1>
     
     <div class="summary">
-        Tổng doanh thu: <strong><?= number_format($totalRevenue, 0, ',', '.') ?> ₫</strong> | 
+        Tổng doanh thu từ đơn hoàn thành: <strong><?= number_format($totalRevenue, 0, ',', '.') ?> ₫</strong> | 
         Tổng số ngày: <strong><?= count($revenueData) ?></strong> | 
-        Tổng đơn hàng: <strong><?= array_sum(array_column($revenueData, 'total_orders')) ?></strong>
+        Tổng đơn hàng hoàn thành: <strong><?= array_sum(array_column($revenueData, 'total_orders')) ?></strong>
     </div>
     
     <table>

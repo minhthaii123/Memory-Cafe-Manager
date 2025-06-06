@@ -7,7 +7,7 @@ require __DIR__ . '/../../vendor/autoload.php';
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
-// Truy vấn doanh thu theo tháng
+// Truy vấn doanh thu theo tháng (chỉ với đơn hàng đã hoàn thành)
 $stmt = $conn->prepare("
     SELECT 
         DATE_FORMAT(o.created_at, '%Y-%m') as month,
@@ -15,6 +15,7 @@ $stmt = $conn->prepare("
         SUM(o.total_price) as total_revenue,
         AVG(o.total_price) as avg_order_value
     FROM orders o
+    WHERE o.status = 'Hoàn thành'
     GROUP BY DATE_FORMAT(o.created_at, '%Y-%m')
     ORDER BY month DESC
 ");
@@ -31,15 +32,15 @@ $totalRevenue = array_sum(array_column($revenueData, 'total_revenue'));
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="/assets/css/staticmonth.css">
-    <title>Báo cáo doanh thu theo tháng</title>
+    <title>Báo cáo doanh thu theo tháng (Đơn hàng hoàn thành)</title>
 </head>
 <body>
-    <h1>Báo cáo doanh thu theo tháng</h1>
+    <h1>Báo cáo doanh thu theo tháng (Đơn hàng hoàn thành)</h1>
 
     <div class="summary">
-        Tổng doanh thu: <strong><?= number_format($totalRevenue, 0, ',', '.') ?> ₫</strong> | 
+        Tổng doanh thu từ đơn hoàn thành: <strong><?= number_format($totalRevenue, 0, ',', '.') ?> ₫</strong> | 
         Tổng số tháng: <strong><?= count($revenueData) ?></strong> | 
-        Tổng đơn hàng: <strong><?= array_sum(array_column($revenueData, 'total_orders')) ?></strong>
+        Tổng đơn hàng hoàn thành: <strong><?= array_sum(array_column($revenueData, 'total_orders')) ?></strong>
     </div>
 
     <table>

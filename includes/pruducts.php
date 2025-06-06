@@ -2,7 +2,17 @@
 include __DIR__ . '/../config/config.php'; 
 
 try {
-    $stmt = $conn->query("SELECT product_name, price, image, quantity FROM products");
+    $search = isset($_GET['search']) ? $_GET['search'] : '';
+    $query = "SELECT product_name, price, image, quantity FROM products";
+    
+    if (!empty($search)) {
+        $query .= " WHERE product_name LIKE :search";
+        $stmt = $conn->prepare($query);
+        $stmt->execute(['search' => "%$search%"]);
+    } else {
+        $stmt = $conn->query($query);
+    }
+    
     $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
     die("Lỗi truy vấn: " . $e->getMessage());
@@ -66,17 +76,66 @@ try {
                 grid-template-columns: 1fr;
             }
         }
+
+        .search-container {
+            text-align: center;
+            margin: 20px auto;
+            max-width: 500px;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .search-container form {
+            display: flex;
+            width: 100%;
+            gap: 10px;
+        }
+        
+        .search-container input[type="text"] {
+            flex: 2; /* Chiếm 2 phần */
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+        }
+        
+        .search-container input[type="text"]:focus {
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.2);
+        }
+        
+        .search-container button {
+            flex: 1; /* Chiếm 1 phần (1/2 của input) */
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .search-container button:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 <body>
     <h2 style="text-align: center;">Danh sách sản phẩm</h2>
+    
+    <div class="search-container">
+        <form action="" method="GET">
+            <input type="text" name="search" placeholder="Tìm kiếm sản phẩm..." value="<?= htmlspecialchars($search) ?>">
+            <button type="submit">Tìm kiếm</button>
+        </form>
+    </div>
+    
     <div class="product-list">
         <?php foreach ($products as $product): ?>
             <div class="product-card">
                 <img src="/<?= htmlspecialchars($product['image']) ?>" alt="Ảnh sản phẩm">
                 <h3><?= htmlspecialchars($product['product_name']) ?></h3>
                 <p><strong>Giá:</strong> <?= number_format($product['price'], 0, ',', '.') ?> VNĐ</p>
-                <p><strong>Số lượng:</strong> <?= $product['quantity'] ?></p>
             </div>
         <?php endforeach; ?>
     </div>

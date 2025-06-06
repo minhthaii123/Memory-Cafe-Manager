@@ -19,7 +19,7 @@ $stmt = $conn->prepare("
     FROM orders o
     JOIN users u ON o.user_id = u.id
     LEFT JOIN order_details od ON o.id = od.order_id
-    WHERE o.status = 'Hoàn thành'
+    WHERE o.status = 'Hủy'
     GROUP BY o.id, o.total_price, o.status, o.created_at, u.fullname, u.username
     ORDER BY o.created_at DESC
 ");
@@ -99,7 +99,7 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <h1>Danh sách đơn hàng toàn hệ thống</h1>
     
     <div class="order-status">
-        Đang xem: Đơn hàng đã hoàn thành
+        Đang xem: Đơn hàng đã hủy
     </div>
 
     <table class="totallistorder">
@@ -129,7 +129,6 @@ $orders = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         </td>
                         <td><?= date('d/m/Y H:i', strtotime($order['created_at'])) ?></td>
                         <td>
-                            <button onclick="loadContent('/modules/orders/order_detail.php?id=<?= $order['id'] ?>')" class="btn-xem">Xem chi tiết</button>
                             <a href="/modules/orders/delete.php?id=<?= $order['id'] ?>" 
                                onclick="return confirm('Bạn có chắc chắn muốn xóa đơn hàng này không?');" 
                                class="btn-delete">Xóa</a>

@@ -76,7 +76,7 @@ if ($totals['total_revenue'] != $detailRevenue || $totals['total_orders'] != cou
             <tr>
                 <th>Mã đơn</th>
                 <th>Người tạo</th>
-                <th>Số sản phẩm</th>
+                <th>Số đơn hàng</th>
                 <th class="text-right">Tổng tiền</th>
                 <th>Trạng thái</th>
                 <th class="text-center">Thời gian</th>

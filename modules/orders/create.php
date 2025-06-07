@@ -186,6 +186,7 @@ function generateOrders() {
         return;
     }
 
+    // Tìm phần tử HTML có id "orderContainer" – đây là nơi sẽ chèn các đơn hàng mới.
     const ordersContainer = document.getElementById("orderContainer");
 
     // Tạo thêm đơn hàng mới, bắt đầu từ currentOrderCount
@@ -212,6 +213,8 @@ function generateOrders() {
 
             <p>Tổng tiền đơn hàng: <span id="orderTotal${i}" class="order-total">0</span></p>
         `;
+
+        //Thêm phần tử orderItem vào trong orderContainer (hiển thị trên giao diện).
         ordersContainer.appendChild(orderItem);
     }
 

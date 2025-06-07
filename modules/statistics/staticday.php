@@ -42,7 +42,6 @@ $totalRevenue = array_sum(array_column($revenueData, 'total_revenue'));
         <thead>
             <tr>
                 <th>Ngày</th>
-                <th class="text-right">Số đơn hàng</th>
                 <th class="text-right">Doanh thu</th>
                 <th class="text-right">Giá trị đơn trung bình</th>
                 <th class="text-center">Chi tiết</th>
@@ -52,7 +51,6 @@ $totalRevenue = array_sum(array_column($revenueData, 'total_revenue'));
             <?php foreach ($revenueData as $row): ?>
                 <tr>
                     <td><?= date('d/m/Y', strtotime($row['order_date'])) ?></td>
-                    <td class="text-right"><?= number_format($row['total_orders'], 0) ?></td>
                     <td class="text-right highlight"><?= number_format($row['total_revenue'], 0, ',', '.') ?> ₫</td>
                     <td class="text-right"><?= number_format($row['avg_order_value'], 0, ',', '.') ?> ₫</td>
                     <td class="text-center">
